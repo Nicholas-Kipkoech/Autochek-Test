@@ -24,3 +24,50 @@ a {
     background: black;
   }
 }
+.products {
+  display: flex;
+  flex-wrap: wrap;
+  /* border: 1px solid black; */
+
+}
+
+.product-card {
+  padding: 2%;
+  flex-grow: 1;
+  flex-basis: 16%;
+  /* flex: 1 16%; */
+  
+  /* margin-top: 30px; */
+  justify-content: center;
+  display:block;
+  align-items: center;
+  border-bottom: seashell;
+  /* so child elements can use flexbox stuff too! */
+}
+.product-image img {
+  height: 210px;
+  justify-content: center;
+}
+.product-info {
+  margin-top: auto;
+  display: block;
+  justify-content: center;
+  
+}
+/* @media (max-width: 920px) {
+  .product-card {
+    flex: 1 21%;
+  }
+} */
+/* .products .product-card:first-child,
+.products .product-card:nth-child(2) {
+  flex: 2 46%;
+} */
+.list{
+  display: block;
+  border: 1px solid red;
+}
+.page-content{
+  display: flex;
+  margin-top: 30px;
+}
