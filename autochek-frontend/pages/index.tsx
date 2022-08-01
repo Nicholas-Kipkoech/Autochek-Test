@@ -5,10 +5,11 @@ import styles from "../styles/Home.module.css";
 import Nav from "./Navbar";
 import axios from "axios";
 import Popular from "./Popular/Popular";
+import Link from "next/link";
 
-const baseUrl = "https://api-prod.autochek.africa/v1/inventory/car/search";
+const baseUrl = "https://api-prod.autochek.africa/v1/inventory/car/search/";
 
-export async function getServerSideProps() {
+export async function getStaticProps(context) {
   const res = await axios.get(baseUrl);
   const data = await res.data;
 
@@ -20,7 +21,7 @@ export async function getServerSideProps() {
 }
 
 const Home: NextPage = ({ data }: any) => {
-  // console.log(data);
+  console.log(data);
   return (
     <div className={styles.container}>
       <Head>
@@ -34,18 +35,20 @@ const Home: NextPage = ({ data }: any) => {
           <section className="products">
             {data.result.map((item, index) => (
               <>
-                <div className="product-card" key={index}>
-                  <div className="product-image">
-                    <img src={item.imageUrl} />
+                <Link href={`/${item.id}`} key={index}>
+                  <div className="product-card">
+                    <div className="product-image">
+                      <img src={item.imageUrl} height="170" />
+                    </div>
+                    <div className="product-info">
+                      <h5>{item.title}</h5>
+                      <h6>Ksh {item.marketplacePrice}</h6>
+                      <button type="button" className="btn btn-primary">
+                        View Details
+                      </button>
+                    </div>
                   </div>
-                  <div className="product-info">
-                    <h5>{item.title}</h5>
-                    <h6>Ksh {item.marketplacePrice}</h6>
-                    <button type="button" className="btn btn-primary">
-                      View Details
-                    </button>
-                  </div>
-                </div>
+                </Link>
               </>
             ))}
           </section>
