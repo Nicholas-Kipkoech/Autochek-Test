@@ -4,6 +4,7 @@ import Image from "next/image";
 import styles from "../styles/Home.module.css";
 import Nav from "./Navbar";
 import axios from "axios";
+import Popular from "./Popular/Popular";
 
 const baseUrl = "https://api-prod.autochek.africa/v1/inventory/car/search";
 
@@ -19,7 +20,7 @@ export async function getServerSideProps() {
 }
 
 const Home: NextPage = ({ data }: any) => {
-  console.log(data);
+  // console.log(data);
   return (
     <div className={styles.container}>
       <Head>
@@ -33,7 +34,7 @@ const Home: NextPage = ({ data }: any) => {
           <section className="products">
             {data.result.map((item, index) => (
               <>
-                <div className="product-card">
+                <div className="product-card" key={index}>
                   <div className="product-image">
                     <img src={item.imageUrl} />
                   </div>

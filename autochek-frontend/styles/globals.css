@@ -71,3 +71,23 @@ a {
   display: flex;
   margin-top: 30px;
 }
+.items-make{
+  display: block;
+  align-items: center;
+  margin-top:30px;
+  background-color:whitesmoke;
+
+}
+.list-make{
+  list-style:none;
+  justify-content: center;
+}
+.popular-title{
+  font-size: 20px;
+  justify-content: center;
+  margin-right:30px;
+}
+.list-image{
+  with:100%;
+  display:flex;
+}
