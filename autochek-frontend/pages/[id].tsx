@@ -1,7 +1,26 @@
+// import CarMedia from "./CarMedia";
+import axios from "axios";
+import Link from "next/link";
+import { useEffect, useState } from "react";
 import Nav from "./Navbar";
 
-export default function ProductDetail({ product }) {
-  console.log(product);
+export default function ProductDetail({ product }: any) {
+  const [result, setResult] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function getData() {
+      const result = await axios.get(
+        `https://api-prod.autochek.africa/v1/inventory/car_media?carId=${product.id}`
+      );
+      console.log(product.id);
+      const data = result.data;
+      setResult(data.carMediaList);
+      setLoading(false);
+    }
+    getData();
+  }, []);
+
   return (
     <div>
       <Nav />
@@ -20,6 +39,14 @@ export default function ProductDetail({ product }) {
             <li>State: {product.state}</li>
             <li>Sold: {product.sold ? "Sold" : "Not sold"}</li>
           </div>
+        </div>
+        <p className="media-title">Car Media</p>
+        <div className="car-media">
+          {result.map((item) => (
+            <div className="item-media">
+              <img src={item.url} height="100" />
+            </div>
+          ))}
         </div>
       </div>
     </div>
