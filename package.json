@@ -5,8 +5,9 @@
   "scripts": {
     "dev": "next dev",
     "start": "next start -p ${PORT}",
-    "heroku postBuild": "next build",
-    "lint": "next lint"
+    "build:next": "next build",
+    "lint": "next lint",
+    "heroku-postBuild":"yarn next build"
   },
   "dependencies": {
     "axios": "^0.27.2",
