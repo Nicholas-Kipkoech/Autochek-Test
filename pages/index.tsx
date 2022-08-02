@@ -39,7 +39,13 @@ const Home: NextPage = ({ data }: any) => {
                 <Link href={`/${item.id}`} key={index}>
                   <div className="product-card">
                     <div className="product-image">
-                      <img src={item.imageUrl} height="170" />
+                      <Image
+                        className="img-thumbnail"
+                        src={item.imageUrl}
+                        alt=""
+                        height="900"
+                        width="800"
+                      />
                     </div>
                     <div className="product-info">
                       <h5>{item.title}</h5>

@@ -1,11 +1,12 @@
 // import CarMedia from "./CarMedia";
 import axios from "axios";
+import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import Nav from "./Navbar";
 
 export default function ProductDetail({ product }: any) {
-  const [result, setResult] = useState([]);
+  const [result, setResult] = useState([product]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -41,10 +42,22 @@ export default function ProductDetail({ product }: any) {
           </div>
         </div>
         <p className="media-title">Car Media</p>
-        <div className="car-media">
+
+        <div className="products">
           {result.map((item) => (
-            <div className="item-media">
-              <img src={item.url} height="100" />
+            <div className="product-card">
+              <div className="product-image">
+                <Image
+                  className="img-thumbnail"
+                  src={item.url}
+                  alt=""
+                  height="900"
+                  width="800"
+                />
+              </div>
+              <div className="product-info">
+                <h6>{item.name}</h6>
+              </div>
             </div>
           ))}
         </div>
