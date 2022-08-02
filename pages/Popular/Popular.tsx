@@ -21,16 +21,7 @@ export default function Popular() {
       <div className="items-make">
         {results.map((item, index) => (
           <ul key={index}>
-            <li className="list-make"></li>&nbsp;
-            <li className="list-image">
-              {item.name}{" "}
-              <Image
-                src={item.imageUrl}
-                height="70"
-                width="100"
-                alt={item.name}
-              />
-            </li>
+            <li className="list-make">{item.name} </li>
           </ul>
         ))}
       </div>
