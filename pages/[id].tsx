@@ -6,7 +6,7 @@ import { useEffect, useState } from "react";
 import Nav from "./Navbar";
 
 export default function ProductDetail({ product }: any) {
-  const [result, setResult] = useState([product]);
+  const [result, setResult] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -20,7 +20,7 @@ export default function ProductDetail({ product }: any) {
       setLoading(false);
     }
     getData();
-  }, []);
+  }, [product]);
 
   return (
     <div>
@@ -28,7 +28,13 @@ export default function ProductDetail({ product }: any) {
       <div className="container">
         <div className="item">
           <div className="product-details">
-            <img src={product.imageUrl} height="300" />
+            <Image
+              className="img-thumbnail"
+              src={product.imageUrl}
+              height="500"
+              width="600"
+              alt={product.name}
+            />
           </div>
           <div className="product-infor">
             <li>Car Name: {product.carName}</li>
@@ -44,8 +50,8 @@ export default function ProductDetail({ product }: any) {
         <p className="media-title">Car Media</p>
 
         <div className="products">
-          {result.map((item) => (
-            <div className="product-card">
+          {result.map((item, index) => (
+            <div className="product-card" key={index}>
               <div className="product-image">
                 <Image
                   className="img-thumbnail"
@@ -71,15 +77,17 @@ export async function getStaticPaths() {
     "https://api-prod.autochek.africa/v1/inventory/car/search"
   );
   const products = await res.json();
-  const paths = products.result.map((product) => {
-    return { params: { id: product.id.toString() } };
-  });
+  const paths = products.result.map(
+    (product: { id: { toString: () => any } }) => {
+      return { params: { id: product.id.toString() } };
+    }
+  );
   return {
     paths,
     fallback: false,
   };
 }
-export async function getStaticProps(context) {
+export async function getStaticProps(context: { params: { id: any } }) {
   const res = await fetch(
     `https://api-prod.autochek.africa/v1/inventory/car/${context.params.id}`
   );

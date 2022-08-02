@@ -6,7 +6,7 @@ import Nav from "./Navbar";
 import axios from "axios";
 import Popular from "./Popular/Popular";
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { Key, useEffect, useState } from "react";
 
 const baseUrl = "https://api-prod.autochek.africa/v1/inventory/car/search/";
 
@@ -34,7 +34,7 @@ const Home: NextPage = ({ data }: any) => {
         <p className="cars-header">All Cars</p>
         <div className="page-content">
           <section className="products">
-            {data.result.map((item, index) => (
+            {data.result.map((item: any, index: Key | null | undefined) => (
               <>
                 <Link href={`/${item.id}`} key={index}>
                   <div className="product-card">
