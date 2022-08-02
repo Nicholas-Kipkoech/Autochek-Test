@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "start": "next start",
+    "start": "next start -p ${PORT}",
+    "heroku postBuild": "next build",
     "lint": "next lint"
   },
   "dependencies": {
