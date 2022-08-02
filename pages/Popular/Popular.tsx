@@ -14,7 +14,7 @@ export default function Popular() {
       setResults(jsonData.makeList);
     };
     api();
-  });
+  }, []);
   return (
     <div className="container">
       <p className="popular-title">Popular make</p>
