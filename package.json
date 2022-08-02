@@ -4,10 +4,10 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "start": "next start -p ${PORT}",
+    "start": "next start --port 3000",
     "build:next": "next build",
     "lint": "next lint",
-    "heroku-postBuild":"yarn next build"
+    "heroku-postBuild":"npm run build"
   },
   "dependencies": {
     "axios": "^0.27.2",

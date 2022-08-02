@@ -53,13 +53,22 @@ export default function ProductDetail({ product }: any) {
           {result.map((item, index) => (
             <div className="product-card" key={index}>
               <div className="product-image">
-                <Image
-                  className="img-thumbnail"
-                  src={item.url}
-                  alt=""
-                  height="900"
-                  width="800"
-                />
+                {item.type != "image" ? (
+                  <iframe
+                    className="img-thumbnail"
+                    src={item.url}
+                    height="900"
+                    width="800"
+                  />
+                ) : (
+                  <Image
+                    className="img-thumbnail"
+                    src={item.url}
+                    alt=""
+                    height="900"
+                    width="800"
+                  />
+                )}
               </div>
               <div className="product-info">
                 <h6>{item.name}</h6>
